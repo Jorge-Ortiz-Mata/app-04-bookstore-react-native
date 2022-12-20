@@ -1,21 +1,24 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView, View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { SafeAreaView, View, Alert, ScrollView, KeyboardAvoidingView } from 'react-native';
 import Title from '../components/common/Title';
 import CustomTextLabel from '../components/create_book/CustomTextLabel';
 import CustomTextInput from '../components/create_book/CustomTextInput';
 import SubmitButton from '../components/create_book/SubmitButton';
 import { getBook } from '../../api/v1/Book';
 import BookDetails from '../components/edit_book/BookDetails';
+import { updateBook } from '../../api/v1/Book';
 
 export default function EditBookScreen({route}){
   const navigation = useNavigation();
-  const id = route.params.id
+  const id = route.params.id;
+
+  const [book, setBook] = useState({})
+
   const [name, setName] = useState('')
   const [author, setAuthor] = useState('')
   const [price, setPrice] = useState('')
-  const [description, setDescription] = useState('')
-  const [book, setBook] = useState({})
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     getBook(id).then(book =>
@@ -27,7 +30,7 @@ export default function EditBookScreen({route}){
         setDescription(book.description)
       }
     )
-  }, [])
+  }, [navigation])
 
   navigation.setOptions({
     title: book?.name,
@@ -40,11 +43,43 @@ export default function EditBookScreen({route}){
     },
   });
 
-  function sendData(){
-    console.log('Sending...')
+  function handleNameBook(name){
+    setName(name)
   }
 
-  console.log(book)
+  function handleAuthorBook(author){
+    setAuthor(author)
+  }
+
+  function handlePriceBook(price){
+    setPrice(price)
+  }
+
+  function handleDescriptionBook(description){
+    setDescription(description)
+  }
+
+  function sendData(){
+    if(name == null || author == null || price == null || description == null){
+      Alert.alert(
+        'Missing params',
+        'All fields are required.',
+        [{text: 'Accept'}]
+      )
+    } else {
+      const params = {
+        name: name,
+        author: author,
+        price: price,
+        description: description,
+      }
+      updateBook(id, params).then((response) => {
+        console.log(response)
+      })
+      navigation.navigate('Books')
+
+    }
+  }
 
   return(
     <SafeAreaView style={{flex: 1}}>
@@ -55,19 +90,19 @@ export default function EditBookScreen({route}){
           <View className="p-2 m-2 rounded-lg">
             <View className="my-2">
               <CustomTextLabel label="Book's title:" />
-              <CustomTextInput sendValue={() => {}} type="default" value={name} />
+              <CustomTextInput sendValue={handleNameBook} type="default" value={name} />
             </View>
             <View className="my-2">
               <CustomTextLabel label="Book's author:" />
-              <CustomTextInput sendValue={() => {}} type="default" value={author} />
+              <CustomTextInput sendValue={handleAuthorBook} type="default" value={author} />
             </View>
             <View className="my-2">
               <CustomTextLabel label="Book's price:" />
-              <CustomTextInput sendValue={() => {}} type="numeric" value={price} />
+              <CustomTextInput sendValue={handlePriceBook} type="numeric" value={price} />
             </View>
             <View className="my-2">
               <CustomTextLabel label="Book's description:" />
-              <CustomTextInput sendValue={() => {}} type="numeric" value={description} />
+              <CustomTextInput sendValue={handleDescriptionBook} type="default" value={description} />
             </View>
             <View className="my-2 items-center">
               <SubmitButton title="Update Book" callAction={sendData} />

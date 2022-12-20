@@ -62,7 +62,7 @@ export async function getBook(id){
 
 export async function updateBook(id, params){
   const requestOptions = {
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Accept': 'application/json',
       "Content-Type": "application/json",
