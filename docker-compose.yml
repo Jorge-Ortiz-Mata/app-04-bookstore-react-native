@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  development:
+    container_name: app-04-bookstore
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - /workspaces/app-04-bookstore/node_modules
