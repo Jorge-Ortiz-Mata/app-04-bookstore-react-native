@@ -11,6 +11,7 @@ import CreateBookScreen from './src/screens/CreateBookScreen';
 import BookScreen from './src/screens/BookScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import FavoriteScreen from './src/screens/FavoriteScreen';
+import EditBookScreen from './src/screens/EditBookScreen';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -43,7 +44,6 @@ function TabNavigation(){
               "display": "flex",
               "justifyContent": "center",
               "alignItems": "center",
-              "borderWidth": 3,
               "height": 70
             },
             null
@@ -72,8 +72,8 @@ function DrawerNavigation(){
         headerTintColor: '#FFFF',
         headerTitleStyle: {fontWeight: 'bold'},
         drawerActiveTintColor: '#2C3639',
-        drawerActiveBackgroundColor: '#F2DEBA',
-        drawerInactiveTintColor: '#F2DEBA',
+        drawerActiveBackgroundColor: '#EFF5F5',
+        drawerInactiveTintColor: '#EFF5F5',
         drawerPosition: 'left',
         drawerType: 'front'
     }}>
@@ -92,6 +92,7 @@ export default function App() {
         <Stack.Screen name="Welcome" component={Welcome} screenOptions={{headerStyle:  styles.header}} />
         <Stack.Screen name="Drawer" component={DrawerNavigation} options={{headerShown: false}} />
         <Stack.Screen name="BookScreen" component={BookScreen} />
+        <Stack.Screen name="EditBookScreen" component={EditBookScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

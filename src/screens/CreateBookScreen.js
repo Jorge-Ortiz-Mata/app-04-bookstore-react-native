@@ -1,7 +1,7 @@
 import { SafeAreaView, View, Text, KeyboardAvoidingView, ScrollView, Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 import { postBook } from '../../api/v1/Book';
 
@@ -55,6 +55,7 @@ export default function CreateBookScreen(){
       setName('')
       setAuthor('')
       setPrice('')
+      navigation.navigate('Books')
     }
   }
 
@@ -65,7 +66,7 @@ export default function CreateBookScreen(){
           <Title title="Create Book" />
           <Text className="font-medium text-center mx-5">You will create a new book by filling in this form</Text>
           <Text className="font-medium text-center mb-5 mx-5">For more information, please ask the administrators about your question.</Text>
-            <View className="border-2 p-2 m-2 border-white rounded-lg">
+            <View className="p-2 m-2 rounded-lg">
               <View className="my-2">
                 <CustomTextLabel label="Book's title:" />
                 <CustomTextInput sendValue={saveName} type="default" value={name} />

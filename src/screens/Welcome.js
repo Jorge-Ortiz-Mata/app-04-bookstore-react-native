@@ -25,7 +25,7 @@ export default function Welcome(){
   return(
     <SafeAreaView className="flex-1">
       <LinearGradient className="flex-1 justify-center items-center" colors={['#2C3639', '#3F4E4F']} >
-        <Entypo name="book" size={80} color="#F2DEBA" />
+        <Entypo name="book" size={80} color="#EFF5F5" />
         <Text className="text-secondaryColor my-5 text-4xl font-bold">¡The Bookstore App!</Text>
         <Text className="text-secondaryColor">React Native and Ruby on Rails 7</Text>
         <Text className="text-secondaryColor">Jorge Ortiz - 2022</Text>

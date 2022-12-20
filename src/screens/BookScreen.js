@@ -45,7 +45,7 @@ export default function BookScreen({route}){
   });
 
   function editBook(){
-    console.log('Editing')
+    navigation.navigate('EditBookScreen', {id: book.id})
   }
 
   function deleteBook(){
