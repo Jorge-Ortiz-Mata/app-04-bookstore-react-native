@@ -10,6 +10,7 @@ import Books from './src/screens/Books';
 import CreateBookScreen from './src/screens/CreateBookScreen';
 import BookScreen from './src/screens/BookScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import FavoriteScreen from './src/screens/FavoriteScreen';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -32,6 +33,7 @@ function TabNavigation(){
           "tabBarLabelStyle": {
             "fontSize": 14,
             "fontWeight": "bold",
+            "marginBottom": 5
           },
           "tabBarItemStyle": {
             "backgroundColor": "#2C3639"
@@ -42,7 +44,7 @@ function TabNavigation(){
               "justifyContent": "center",
               "alignItems": "center",
               "borderWidth": 3,
-              "height": 60
+              "height": 70
             },
             null
           ]
@@ -76,6 +78,7 @@ function DrawerNavigation(){
         drawerType: 'front'
     }}>
       <Drawer.Screen name="Tab" component={TabNavigation} options={{title: 'Bookstore'}} />
+      <Drawer.Screen name="FavoriteScreen" component={FavoriteScreen} />
       <Drawer.Screen name="ProfileScreen" component={ProfileScreen} options={{title: 'My profile'}} />
     </Drawer.Navigator>
   )

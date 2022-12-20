@@ -14,6 +14,19 @@ export async function getBooks(){
   return books;
 }
 
+// ---------- Get Favorite Books --------------
+export async function favoriteBooks(){
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  }
+
+  const response = await fetch(`${URL}/api/v1/favorite/books`, requestOptions)
+  const books = await response.json();
+  return books;
+}
 // ---------- Books Create ---------------
 export async function postBook(params){
   const requestOptions = {

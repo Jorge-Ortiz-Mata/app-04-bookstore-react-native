@@ -8,8 +8,9 @@ export default function Book({book}){
     navigation.navigate('BookScreen', {id: book.id});
   }
 
+
   return(
-    <Pressable className="border-2 mb-5 mx-5 rounded-lg" onPress={goToBookScreen}>
+    <Pressable className="mb-5 mx-5 rounded-lg" onPress={goToBookScreen}>
       <View className="p-5 bg-white rounded-lg">
         <Text className="font-bold text-xl mb-2">{book.name}</Text>
         <View className="flex-row">
