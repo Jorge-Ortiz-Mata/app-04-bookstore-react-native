@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { getBook } from '../../api/v1/Book';
-import { updateBook } from '../../api/v1/Book';
+import { updateBook, destroyBook } from '../../api/v1/Book';
 import IconBtn from '../components/single_book/IconBtn';
 
 export default function BookScreen({route}){
@@ -49,17 +49,24 @@ export default function BookScreen({route}){
   }
 
   function deleteBook(){
-    console.log('Deleting')
+    destroyBook(id).then(() => {});
+    Alert.alert(
+      'Book deleted successfully',
+      'Your book has been deleted from the database',
+      [{ text: 'Accept', onPress: () => console.log('Cancel') }],
+      { cancelable: true });
+    navigation.navigate('Drawer')
+  }
+
+  function deleteBookIcon(){
     Alert.alert(
       `Delete Book: ${book.name}`,
       'Are you sure you want to delete this book?',
       [
-        { text: 'Yes', onPress: () => console.log('Deleted')},
+        { text: 'Yes', onPress: deleteBook },
         { text: 'No', onPress: () => console.log('Cancel')}
       ],
-      {
-        cancelable: true,
-      })
+      { cancelable: true })
   }
 
   return(
@@ -70,7 +77,7 @@ export default function BookScreen({route}){
         <Text className="font-bold text-center">${ parseFloat(book.price).toFixed(2) } USD</Text>
         <View className="flex-row items-center justify-center mt-3 mb-2">
           <IconBtn color="green" icon="pencil" onPressIcon={editBook} />
-          <IconBtn color="red" icon="trash" onPressIcon={deleteBook} />
+          <IconBtn color="red" icon="trash" onPressIcon={deleteBookIcon} />
         </View>
         <Text className="font-bold text-center my-2">{book.description}</Text>
       </ScrollView>

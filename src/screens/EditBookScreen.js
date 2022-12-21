@@ -76,8 +76,12 @@ export default function EditBookScreen({route}){
       updateBook(id, params).then((response) => {
         console.log(response)
       })
-      navigation.navigate('Books')
-
+      navigation.navigate('Books');
+      Alert.alert(
+        'Book updated',
+        'Your book has been successfully updated',
+        [{text: 'Accept'}]
+      )
     }
   }
 

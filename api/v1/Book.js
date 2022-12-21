@@ -1,4 +1,4 @@
-const URL = 'https://2361-177-232-88-173.ngrok.io';
+const URL = 'https://755a-177-232-88-173.ngrok.io';
 
 // ---------- Books Index --------------
 export async function getBooks(){
@@ -72,4 +72,17 @@ export async function updateBook(id, params){
   const response = await fetch(`${URL}/api/v1/books/${id}`, requestOptions)
   const book = await response.json();
   return book;
+}
+
+// ----------- Book Delete -------------------
+
+export async function destroyBook(id){
+  const requestOptions = {
+    method: 'DELETE',
+    headers:{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }
+  const response = await fetch(`${URL}/api/v1/books/${id}`, requestOptions)
 }
