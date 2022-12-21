@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import {RAILS_API_URL} from '@env'
 // ---- Screens -----
 import Welcome from './src/screens/Welcome';
 import Books from './src/screens/Books';
@@ -83,6 +83,11 @@ function DrawerNavigation(){
     </Drawer.Navigator>
   )
 }
+
+console.log('Hello');
+console.log('====================================');
+console.log(RAILS_API_URL);
+console.log('====================================');
 
 export default function App() {
 

@@ -1,5 +1,4 @@
-const URL = 'https://755a-177-232-88-173.ngrok.io';
-
+import {RAILS_API_URL} from '@env'
 // ---------- Books Index --------------
 export async function getBooks(){
   const requestOptions = {
@@ -9,7 +8,7 @@ export async function getBooks(){
     }
   }
 
-  const response = await fetch(`${URL}/api/v1/books`, requestOptions)
+  const response = await fetch(`${RAILS_API_URL}/api/v1/books`, requestOptions)
   const books = await response.json();
   return books;
 }
@@ -23,7 +22,7 @@ export async function favoriteBooks(){
     }
   }
 
-  const response = await fetch(`${URL}/api/v1/favorite/books`, requestOptions)
+  const response = await fetch(`${RAILS_API_URL}/api/v1/favorite/books`, requestOptions)
   const books = await response.json();
   return books;
 }
@@ -38,7 +37,7 @@ export async function postBook(params){
     body: JSON.stringify({book: params})
   }
 
-  const response = await fetch(`${URL}/api/v1/books`, requestOptions)
+  const response = await fetch(`${RAILS_API_URL}/api/v1/books`, requestOptions)
   const bookCreated = await response.json();
   return bookCreated;
 }
@@ -53,7 +52,7 @@ export async function getBook(id){
     },
   }
 
-  const response = await fetch(`${URL}/api/v1/books/${id}`, requestOptions)
+  const response = await fetch(`${RAILS_API_URL}/api/v1/books/${id}`, requestOptions)
   const book = await response.json();
   return book;
 }
@@ -69,7 +68,7 @@ export async function updateBook(id, params){
     },
     body: JSON.stringify({book: params}),
   }
-  const response = await fetch(`${URL}/api/v1/books/${id}`, requestOptions)
+  const response = await fetch(`${RAILS_API_URL}/api/v1/books/${id}`, requestOptions)
   const book = await response.json();
   return book;
 }
@@ -84,5 +83,5 @@ export async function destroyBook(id){
       'Content-Type': 'application/json'
     }
   }
-  const response = await fetch(`${URL}/api/v1/books/${id}`, requestOptions)
+  const response = await fetch(`${RAILS_API_URL}/api/v1/books/${id}`, requestOptions)
 }
