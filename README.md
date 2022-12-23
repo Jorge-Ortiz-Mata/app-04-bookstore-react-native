@@ -6,7 +6,9 @@ For more infomration, you can checkt the Rails API repo where you will find all 
 
 ## Preview.
 
-In the image below you can see a short demonstration of the Bookstore App
+In the image below you can see a short demonstration of the Bookstore App.
+
+<img src='./assets/video.gif' width='200'>
 
 ## Images.
 
